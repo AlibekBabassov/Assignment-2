@@ -1,7 +1,7 @@
 //Task3
 
 import java.util.*;
-public class Main{
+public class MainTask3{
     public static void main() {
         Scanner scanner = new Scanner(System.in);
         LinkedList<BankAccount> accounts = new LinkedList<>();
