@@ -1,11 +1,12 @@
 import java.util.*;
-//Task 4
+//Task 5
 public class Main{
     public static void main() {
         Scanner scanner = new Scanner(System.in);
         LinkedList<BankAccount> accounts = new LinkedList<>();
         Stack<String> transactions = new Stack<>();
         Queue<String> billQueue = new LinkedList<>();
+        Queue<BankAccount> accountRequests = new LinkedList<>();
         while (true){
             System.out.println("Menu");
             System.out.println("1. Add a new account");
@@ -19,7 +20,10 @@ public class Main{
             System.out.println("9. Add bill payment request");
             System.out.println("10. Process next bill payment");
             System.out.println("11. Display queue");
-            System.out.println("12. Exit");
+            System.out.println("12. Add account request to queue");
+            System.out.println("13. Process request");
+            System.out.println("14. Display pending requests");
+            System.out.println("15. Exit");
             System.out.print("Select: ");
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -144,7 +148,6 @@ public class Main{
                 case 9:
                     System.out.print("Enter bill name: ");
                     String bill = scanner.nextLine();
-
                     billQueue.offer(bill);
                     System.out.println("Added: " + bill + " Bill");
                     break;
@@ -167,6 +170,37 @@ public class Main{
                     }
                     break;
                 case 12:
+                    System.out.print("Enter account number: ");
+                    int accNum = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.print("Enter username: ");
+                    String Name = scanner.nextLine();
+                    System.out.print("Enter balance: ");
+                    double Balance = scanner.nextDouble();
+                    scanner.nextLine();
+                    accountRequests.offer(new BankAccount(accNum, Name, Balance));
+                    System.out.println("Request added");
+                    break;
+                case 13:
+                    if (!accountRequests.isEmpty()) {
+                        BankAccount acc = accountRequests.poll();
+                        accounts.add(acc);
+                        System.out.println("Account approved: " + acc.getUsername());
+                    } else {
+                        System.out.println("No pending requests");
+                    }
+                    break;
+                case 14:
+                    if (accountRequests.isEmpty()) {
+                        System.out.println("No pending requests");
+                    } else {
+                        System.out.println("Pending requests:");
+                        for (BankAccount acc : accountRequests) {
+                            System.out.println(acc.getUsername());
+                        }
+                    }
+                    break;
+                case 15:
                     System.out.println("Goodbye!");
                     return;
                 default:
