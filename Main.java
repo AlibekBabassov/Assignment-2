@@ -1,11 +1,11 @@
-//Task3
-
 import java.util.*;
+//Task 4
 public class Main{
     public static void main() {
         Scanner scanner = new Scanner(System.in);
         LinkedList<BankAccount> accounts = new LinkedList<>();
         Stack<String> transactions = new Stack<>();
+        Queue<String> billQueue = new LinkedList<>();
         while (true){
             System.out.println("Menu");
             System.out.println("1. Add a new account");
@@ -16,7 +16,10 @@ public class Main{
             System.out.println("6. Pay Bill");
             System.out.println("7. Display last transaction (peek)");
             System.out.println("8. Undo last transaction (pop)");
-            System.out.println("9. Exit");
+            System.out.println("9. Add bill payment request");
+            System.out.println("10. Process next bill payment");
+            System.out.println("11. Display queue");
+            System.out.println("12. Exit");
             System.out.print("Select: ");
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -139,6 +142,31 @@ public class Main{
                     }
                     break;
                 case 9:
+                    System.out.print("Enter bill name: ");
+                    String bill = scanner.nextLine();
+
+                    billQueue.offer(bill);
+                    System.out.println("Added: " + bill + " Bill");
+                    break;
+                case 10:
+                    if (!billQueue.isEmpty()) {
+                        String nextBill = billQueue.poll();
+                        System.out.println("Processing: " + nextBill + " Bill");
+                    } else {
+                        System.out.println("Queue is empty");
+                    }
+                    break;
+                case 11:
+                    if (billQueue.isEmpty()) {
+                        System.out.println("Queue is empty");
+                    } else {
+                        System.out.print("Remaining:");
+                        for (String b : billQueue) {
+                            System.out.println(b + " Bill");
+                        }
+                    }
+                    break;
+                case 12:
                     System.out.println("Goodbye!");
                     return;
                 default:
