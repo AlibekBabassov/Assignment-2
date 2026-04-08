@@ -1,7 +1,9 @@
 Banking System (Assignment #2)
 ------------------------------
 Name: Babassov Alibek
+
 Group: It-2503
+
 Summary: This project is a mini banking system developed in Java that demonstrates the use of different data structures.
 First, a LinkedList is used to store bank accounts, allowing dynamic addition, searching, and updating of account information such as deposits and withdrawals.
 Second, a Stack is implemented to manage transaction history. It follows the LIFO principle, which allows the program to store recent transactions and undo the last operation.
